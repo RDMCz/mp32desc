@@ -21,7 +21,6 @@ namespace mp32desc
             // Initial state of the app
             Button_Copy.IsEnabled = false;
             Button_Save.IsEnabled = false;
-            TextBox_Path.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
             TextBox_Template.Text = "{artist} – {year} – {trackNumber} – {title}";
             ProgressBar.Visibility = Visibility.Hidden;
         }

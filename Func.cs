@@ -47,6 +47,14 @@ namespace mp32desc
         {
             IEnumerable<string> enumeratedFiles = Directory.EnumerateFiles(selectedFolderName, "*", SearchOption.AllDirectories);
 
+            // ???: Fix issue where EnumerateFiles was returning non-existing(?) folder for some reason, which then results in UnauthorizedAccessException on .Count() call
+            try {
+                _ = enumeratedFiles.Count();
+            }
+            catch (UnauthorizedAccessException e) {
+                return new Folder2AudioFilesCollectionCrate(e.Message, []);
+            }
+
             if (enumeratedFiles is not null && enumeratedFiles.Any()) {
                 // For reporting progress in UI:
                 int nProcessedFiles = 0;
