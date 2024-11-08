@@ -1,0 +1,60 @@
+﻿<Window x:Class="mp32desc.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mp32desc"
+        mc:Ignorable="d"
+        Title="mp32desc" Height="720" Width="1280" MinHeight="540" MinWidth="960">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="203" MaxWidth="400"></ColumnDefinition>
+            <ColumnDefinition MinWidth="762"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" Margin="5">
+            <TextBox x:Name="TextBox_Path" IsReadOnly="True" Text="Path"></TextBox>
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="Button_RevealInExplorer" Content="Reveal in explorer" Click="OnOpenDirectoryButtonClick"></Button>
+                <Button x:Name="Button_ChangeDirectory" Grid.Column="2" Content="Change directory" Click="OnChangeDirectoryButtonClick"></Button>
+            </Grid>
+            <TextBlock x:Name="TextBlock_FilesInfo" Margin="0,15,0,0"></TextBlock>
+            <ProgressBar x:Name="ProgressBar" Height="20" VerticalAlignment="Bottom" Margin="0,5,0,0" Minimum="0" Maximum="1"></ProgressBar>
+        </StackPanel>
+
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <TextBox x:Name="TextBox_Result" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,0,5"></TextBox>
+
+            <TextBox Grid.Row="1" x:Name="TextBox_Template" Margin="0,0,0,5" VerticalContentAlignment="Center"></TextBox>
+            
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="CheckBox_Timestamps" IsThreeState="False" VerticalAlignment="Center" Content="Prefix with YouTube timestamps"></CheckBox>
+                <CheckBox x:Name="CheckBox_Subdirectories" IsThreeState="False" Grid.Column="1" VerticalAlignment="Center" Content="Include names of subdirectories" Margin="25,0,0,0" ></CheckBox>
+                <Button x:Name="Button_Save" Grid.Column="3" Content="Save" Margin="5,0,0,0" Click="OnSaveButtonClick"></Button>
+                <Button x:Name="Button_Copy" Grid.Column="4" Content="Copy" Margin="5,0,0,0" Click="OnCopyButtonClick"></Button>
+                <Button x:Name="Button_Generate" Grid.Column="5" Content="Generate" Margin="5,0,0,0" Click="OnGenerateButtonClick"></Button>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>
