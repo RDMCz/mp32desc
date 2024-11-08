@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace mp32desc
 {
@@ -106,6 +107,21 @@ namespace mp32desc
             if (dialog.ShowDialog() == true) {
                 File.WriteAllText(dialog.FileName, TextBox_Result.Text);
             }
+        }
+
+        /// <summary>
+        /// Button "?": Shows button's context menu
+        /// </summary>
+        private void OnHelperButtonClick(object sender, RoutedEventArgs e)
+            => ContextMenu_Helper.IsOpen = true;
+
+        /// <summary>
+        /// `ContextMenu_Helper`: Pastes selected userTemplate field into `TextBox_Template` (with curly braces)
+        /// </summary>
+        private void OnContextMenuItemClick(object sender, RoutedEventArgs e)
+        {
+            var menuItemSender = sender as MenuItem;
+            TextBox_Template.Text += $"{{{menuItemSender.Header}}}";
         }
     }
 }

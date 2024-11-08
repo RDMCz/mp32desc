@@ -36,8 +36,30 @@
             
             <TextBox x:Name="TextBox_Result" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,0,5"></TextBox>
 
-            <TextBox Grid.Row="1" x:Name="TextBox_Template" Margin="0,0,0,5" VerticalContentAlignment="Center"></TextBox>
-            
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TextBox_Template" Margin="0,0,0,5" VerticalContentAlignment="Center"></TextBox>
+                <Button Grid.Column="1" Content="?" Height="25" Margin="0,0,0,5" Click="OnHelperButtonClick">
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="ContextMenu_Helper">
+                            <MenuItem Click="OnContextMenuItemClick" Header="title"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="artist"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="album"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="year"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="trackNumber"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="discNumber"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="genre"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="comment"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="duration"></MenuItem>
+                            <MenuItem Click="OnContextMenuItemClick" Header="bitrate"></MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+            </Grid>
+
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
