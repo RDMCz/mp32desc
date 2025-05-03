@@ -38,7 +38,7 @@ namespace mp32desc
         // == IMPORTING FILES FROM DIRECTORY ==
         private static readonly string[] ALLOWED_FILE_TYPES = [".mp3", ".m4a", ".flac", ".wav"];
         private static readonly int N_ALLOWED_FILE_TYPES = ALLOWED_FILE_TYPES.Length;
-        public record Folder2AudioFilesCollectionCrate(string Text, List<Track> Collection);
+        public record struct Folder2AudioFilesCollectionCrate(string Text, List<Track> Collection);
 
         /// <param name="selectedFolderName"></param>
         /// <param name="progress">Used to report progress back to the UI</param>
@@ -59,28 +59,48 @@ namespace mp32desc
                 // For reporting progress in UI:
                 int nProcessedFiles = 0;
                 int nTotalFiles = enumeratedFiles.Count(); // (also used in resultText)
+                
                 // For resultText:
                 int[] nOfFileTypes = new int[N_ALLOWED_FILE_TYPES];
                 int nAudioFiles = 0;
+                Dictionary<string, int> otherFileTypesQuantities = [];
+                bool isCurrentFileSupported;
+
                 // Fill the collection with files that have allowed extension (called "supported aduio files" in UI)
                 List<Track> resultCollection = [];
                 foreach (string filePath in enumeratedFiles) {
+                    isCurrentFileSupported = false;
                     for (int fileTypeIndex = 0; fileTypeIndex < N_ALLOWED_FILE_TYPES; fileTypeIndex++) {
                         if (filePath.EndsWith(ALLOWED_FILE_TYPES[fileTypeIndex])) {
                             resultCollection.Add(new(filePath));
                             nOfFileTypes[fileTypeIndex]++;
                             nAudioFiles++;
+                            isCurrentFileSupported = true;
                             break;
                         }
                     }
+                    if (!isCurrentFileSupported) {
+                        string extension = Path.GetExtension(filePath);
+                        if (string.IsNullOrEmpty(extension)) extension = "No extension";
+                        if (!otherFileTypesQuantities.ContainsKey(extension)) otherFileTypesQuantities[extension] = 0;
+                        otherFileTypesQuantities[extension]++;
+                    }
+                    // Update the progress bar after every processed file
                     progress.Report(new(++nProcessedFiles, nTotalFiles));
                 }
-                // Fill the string with info about imported files (total files found, how many foreach supported extension, how many un/supported)
-                string resultText = $"Found {nTotalFiles} files:";
+
+                // Fill the string with info about imported files (total files found, how many foreach un/supported extension, how many un/supported)
+                int nOtherFiles = nTotalFiles - nAudioFiles;
+                string resultText = $"Found {nTotalFiles} files:\n{nAudioFiles} × supported audio files\n{nOtherFiles} × other\n\nSupported:";
                 for (int fileTypeIndex = 0; fileTypeIndex < N_ALLOWED_FILE_TYPES; fileTypeIndex++) {
                     resultText += $"\n{nOfFileTypes[fileTypeIndex]} × {ALLOWED_FILE_TYPES[fileTypeIndex]}";
                 }
-                resultText += $"\n\n{nAudioFiles} × supported audio files\n{nTotalFiles - nAudioFiles} × other";
+                if (nOtherFiles > 0) {
+                    resultText += "\n\nOther:";
+                    foreach (KeyValuePair<string, int> pair in otherFileTypesQuantities) {
+                        resultText += $"\n{pair.Key} × {pair.Value}";
+                    }
+                }
 
                 return new Folder2AudioFilesCollectionCrate(resultText, resultCollection);
             }
