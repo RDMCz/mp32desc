@@ -45,7 +45,7 @@ namespace mp32desc
         /// <returns>Text with info about imported files and Collection of tracks from directory `selectedFolderName` and its subdirectories</returns>
         public static Folder2AudioFilesCollectionCrate Folder2AudioFilesCollection(string selectedFolderName, IProgress<Tuple<int, int>> progress)
         {
-            IEnumerable<string> enumeratedFiles = Directory.EnumerateFiles(selectedFolderName, "*", SearchOption.AllDirectories);
+            IEnumerable<string> enumeratedFiles = Directory.EnumerateFiles(selectedFolderName, "*", SearchOption.AllDirectories).Order();
 
             // If user is not authorized to view said (sub)directory, inform them in the UI and abort
             try {

@@ -11,6 +11,7 @@ Creates text summaries for collections of your mp3 (or other audio) files.
 ### 1.0.2
 
 * Show which and how many unsupported/non-audio files were not loaded
+* Explicit file order by their full path (ascending) (instead of implicit `Directory.EnumerateFiles` order)
 
 ### 1.0.1
 
