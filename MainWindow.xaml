@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mp32desc"
         mc:Ignorable="d"
-        Title="mp32desc" Height="720" Width="1280" MinHeight="540" MinWidth="960">
+        Title="mp32desc v1.0.2" Height="720" Width="1280" MinHeight="540" MinWidth="960">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="203" MaxWidth="400"></ColumnDefinition>
