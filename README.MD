@@ -8,6 +8,13 @@ Creates text summaries for collections of your mp3 (or other audio) files.
 
 ## Changelog
 
+### 1.0.3
+
+* _Reveal in explorer_ button improvements/fixes
+  * Can now open paths with commas in them
+  * If there is a window with this path already opened, don't open it again and just maximize the existing one
+* Added app icon
+
 ### 1.0.2
 
 * Show which and how many unsupported/non-audio files were not loaded
