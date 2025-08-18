@@ -12,7 +12,7 @@ Creates text summaries for collections of your mp3 (or other audio) files.
 
 * _Reveal in explorer_ button improvements/fixes
   * Can now open paths with commas in them
-  * If there is a window with this path already opened, don't open it again and just maximize the existing one
+  * If there is a window with this path already opened, don't open it again and just focus the existing one
 * Added app icon
 
 ### 1.0.2
