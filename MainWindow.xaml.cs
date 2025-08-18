@@ -19,6 +19,7 @@ namespace mp32desc
             InitializeComponent();
             changeDirectoryProgress = new(x => { TextBlock_FilesInfo.Text = $"{x.Item1}/{x.Item2}"; ProgressBar.Value = (double)x.Item1 / x.Item2; });
             // Initial state of the app
+            Button_RevealInExplorer.IsEnabled = false;
             Button_Copy.IsEnabled = false;
             Button_Save.IsEnabled = false;
             TextBox_Template.Text = "{artist} – {year} – {trackNumber} – {title}";
@@ -29,8 +30,13 @@ namespace mp32desc
         /// `Button_RevealInExplorer`: Opens a Windows file explorer with path present in `TextBox_Path` (either initial value or directory that user has selected)
         /// </summary>
         private void OnOpenDirectoryButtonClick(object sender, RoutedEventArgs e)
-            => Process.Start("explorer.exe", TextBox_Path.Text);
-
+        {
+            string pathToOpen = TextBox_Path.Text;
+            if (!string.IsNullOrEmpty(pathToOpen)) {
+                Process.Start(new ProcessStartInfo(pathToOpen) { UseShellExecute = true });
+            }
+        }
+        
         /// <summary>
         /// `Button_ChangeDirectory` Shows dialog for selecting new directory, fills `audioFiles` with tracks from this directory (and its subdirectories), fills `TextBlock_FilesInfo` with info about how many files were imported and what extensions are they
         /// </summary>
