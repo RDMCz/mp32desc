@@ -6,6 +6,15 @@ Creates text summaries for collections of your mp3 (or other audio) files.
 
 ![1.0.2](./Screenshot.jpg)
 
+## Why?
+
+When I upload albums/custom mixes to YouTube, I use this program to automatically generate descriptions with proper timestamps, so YouTube will correctly segment the video timeline. Sometimes, I use it to take notes about tracks in an "unknown" playlist I'm currently listening to. It could also be used to share information about your offline playlists with others, but there might be better ways to do it. This program is probably pretty niche, but it's definitely useful to _someone_.
+
+## Dependencies
+
+* .NET 8
+* [Zeugma440/atldotnet](https://github.com/Zeugma440/atldotnet) ([MIT](https://github.com/Zeugma440/atldotnet/blob/main/LICENSE))
+
 ## Changelog
 
 ### 1.0.3
@@ -27,7 +36,3 @@ Creates text summaries for collections of your mp3 (or other audio) files.
 ### 1.0.0
 
 * Initial release
-
----
-
-Uses [Zeugma440/atldotnet](https://github.com/Zeugma440/atldotnet) under [MIT license](https://github.com/Zeugma440/atldotnet/blob/main/LICENSE).
