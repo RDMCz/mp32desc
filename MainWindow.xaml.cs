@@ -76,7 +76,7 @@ namespace mp32desc
         /// </summary>
         private void OnGenerateButtonClick(object sender, RoutedEventArgs e)
         {
-            // No need to run through empty collection (happens when directory has nop supported files in it)
+            // No need to run through empty collection (happens when directory has no supported files in it)
             if (audioFiles is null || audioFiles.Count == 0) {
                 TextBox_Result.Text = "Choose a directory with some audio files first.";
                 return;
@@ -93,7 +93,7 @@ namespace mp32desc
         }
 
         /// <summary>
-        /// `Button_Copy`: Inserts content `TextBox_Result` into user's clipboard
+        /// `Button_Copy`: Inserts content of `TextBox_Result` into user's clipboard
         /// </summary>
         private void OnCopyButtonClick(object sender, RoutedEventArgs e)
             => Clipboard.SetText(TextBox_Result.Text);

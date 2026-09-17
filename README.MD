@@ -1,5 +1,8 @@
 # mp32desc
 
+> [!NOTE]  
+> This app was discontinued and remade in Avalonia. __See <https://github.com/RDMCz/mp32descR>.__
+
 Creates text summaries for collections of your mp3 (or other audio) files.
 
 ## Screenshot
